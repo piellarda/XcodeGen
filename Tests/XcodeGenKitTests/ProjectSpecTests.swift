@@ -455,6 +455,11 @@ class ProjectSpecTests: XCTestCase {
                                                                             postActions: [Scheme.ExecutionAction(name: "postAction",
                                                                                                                  script: "bar",
                                                                                                                  settingsTarget: "foo")]))],
+                                   packages: [
+                                    "Yams": SwiftPackage(
+                                        url: "https://github.com/jpsim/Yams",
+                                        versionRequirement: .upToNextMajorVersion("2.0.0"))
+                                    ],
                                    options: SpecOptions(minimumXcodeGenVersion: Version(major: 3, minor: 4, patch: 5),
                                                         carthageBuildPath: "carthageBuildPath",
                                                         carthageExecutablePath: "carthageExecutablePath",
@@ -493,6 +498,7 @@ class ProjectSpecTests: XCTestCase {
                 try expect(proj.options) == restoredProj.options
                 try expect(proj.settingGroups) == restoredProj.settingGroups
                 try expect(proj.targets) == restoredProj.targets
+                try expect(proj.packages) == restoredProj.packages
 
                 try expect(proj) == restoredProj
             }
